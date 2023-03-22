@@ -1,9 +1,7 @@
 import mysql.connector
-from dotenv import load_dotenv
-load_dotenv()
 import os
-# sebelum dijalankan, sesuaikan ini port, user dan password terlebih dahulu
 
+# sebelum dijalankan, sesuaikan ini port, user dan password terlebih dahulu
 mydb = mysql.connector.connect(
     host='localhost',
     user='root',

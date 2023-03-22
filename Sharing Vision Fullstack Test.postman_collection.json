@@ -1,0 +1,469 @@
+{
+	"info": {
+		"_postman_id": "9af8d83b-c8cb-4fe2-aab2-00fea5dfc9ed",
+		"name": "Sharing Vision Fullstack Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2607726"
+	},
+	"item": [
+		{
+			"name": "Deploy",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://flask-sharing-vision-production.up.railway.app/article/",
+							"protocol": "https",
+							"host": [
+								"flask-sharing-vision-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"article",
+								""
+							]
+						},
+						"description": "untuk menarik semua data pada table posts"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://flask-sharing-vision-production.up.railway.app/article/5",
+							"protocol": "https",
+							"host": [
+								"flask-sharing-vision-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"article",
+								"5"
+							]
+						},
+						"description": "untuk menaring single article dengan parameter id"
+					},
+					"response": []
+				},
+				{
+					"name": "Paginate Article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://flask-sharing-vision-production.up.railway.app/article/4/0",
+							"protocol": "https",
+							"host": [
+								"flask-sharing-vision-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"article",
+								"4",
+								"0"
+							]
+						},
+						"description": "paginasi dengan parameter limit dan offset"
+					},
+					"response": []
+				},
+				{
+					"name": "Cek Validasi",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\":\"Kenapa Lidah Buaya Tidak Main main?\",\n  \"content\":\" konten kurang dari 100.\",\n  \"category\":\"test\",\n  \"status\":\"LOH\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://flask-sharing-vision-production.up.railway.app/article/",
+							"protocol": "https",
+							"host": [
+								"flask-sharing-vision-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"article",
+								""
+							]
+						},
+						"description": "post article"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Artilcle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\":\"Kenapa Lidah Buaya Tidak Main main?\",\n  \"content\":\" Vivamus dictum nulla a tellus rutrum facilisis. Nunc et enim eget elit placerat posuere vitae sed quam. Etiam luctus, diam commodo faucibus dictum, velit dui varius leo, sit amet facilisis eros erat a libero. Sed dictum sed mi convallis vestibulum. Cras ullamcorper massa ante. Maecenas tristique varius nunc at vestibulum. Nulla efficitur purus eu orci elementum consequat. Quisque maximus magna elit, in imperdiet tellus sodales quis. In semper, risus sed molestie tincidunt, ex elit vestibulum nisi, non mattis eros nulla eget sem. Proin eu magna et elit blandit faucibus. In hac habitasse platea dictumst. Suspendisse ultricies, felis in mollis pulvinar, leo mi finibus nisl, sit amet aliquam tortor urna eu metus.\",\n  \"category\":\"test\",\n  \"status\":\"Publish\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://flask-sharing-vision-production.up.railway.app/article/",
+							"protocol": "https",
+							"host": [
+								"flask-sharing-vision-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"article",
+								""
+							]
+						},
+						"description": "post article"
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\":\"Pohon mangga itu hijau? yang bener?\",\n  \"content\":\" Vivamus dictum nulla a tellus rutrum facilisis. Nunc et enim eget elit placerat posuere vitae sed quam. Etiam luctus, diam commodo faucibus dictum, velit dui varius leo, sit amet facilisis eros erat a libero. Sed dictum sed mi convallis vestibulum. Cras ullamcorper massa ante. Maecenas tristique varius nunc at vestibulum. Nulla efficitur purus eu orci elementum consequat. Quisque maximus magna elit, in imperdiet tellus sodales quis. In semper, risus sed molestie tincidunt, ex elit vestibulum nisi, non mattis eros nulla eget sem. Proin eu magna et elit blandit faucibus. In hac habitasse platea dictumst. Suspendisse ultricies, felis in mollis pulvinar, leo mi finibus nisl, sit amet aliquam tortor urna eu metus.\",\n  \"category\":\"test\",\n  \"status\":\"Publish\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://flask-sharing-vision-production.up.railway.app/article/1",
+							"protocol": "https",
+							"host": [
+								"flask-sharing-vision-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"article",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Article",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://flask-sharing-vision-production.up.railway.app/article/4",
+							"protocol": "https",
+							"host": [
+								"flask-sharing-vision-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"article",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/article/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"article",
+								""
+							]
+						},
+						"description": "untuk menarik semua data pada table posts"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/article/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"article",
+								"5"
+							]
+						},
+						"description": "untuk menaring single article dengan parameter id"
+					},
+					"response": []
+				},
+				{
+					"name": "Paginate Article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/article/4/0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"article",
+								"4",
+								"0"
+							]
+						},
+						"description": "paginasi dengan parameter limit dan offset"
+					},
+					"response": []
+				},
+				{
+					"name": "Cek Validasi",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\":\"Kenapa Lidah Buaya Tidak Main main?\",\n  \"content\":\" konten kurang dari 100.\",\n  \"category\":\"test\",\n  \"status\":\"LOH\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/article/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"article",
+								""
+							]
+						},
+						"description": "post article"
+					},
+					"response": []
+				},
+				{
+					"name": "Post Artikel",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\":\"Kenapa Lidah Buaya Tidak Main main?\",\n  \"content\":\" Vivamus dictum nulla a tellus rutrum facilisis. Nunc et enim eget elit placerat posuere vitae sed quam. Etiam luctus, diam commodo faucibus dictum, velit dui varius leo, sit amet facilisis eros erat a libero. Sed dictum sed mi convallis vestibulum. Cras ullamcorper massa ante. Maecenas tristique varius nunc at vestibulum. Nulla efficitur purus eu orci elementum consequat. Quisque maximus magna elit, in imperdiet tellus sodales quis. In semper, risus sed molestie tincidunt, ex elit vestibulum nisi, non mattis eros nulla eget sem. Proin eu magna et elit blandit faucibus. In hac habitasse platea dictumst. Suspendisse ultricies, felis in mollis pulvinar, leo mi finibus nisl, sit amet aliquam tortor urna eu metus.\",\n  \"category\":\"test\",\n  \"status\":\"Publish\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/article/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"article",
+								""
+							]
+						},
+						"description": "post article"
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\":\"Pohon mangga itu hijau? yang bener?\",\n  \"content\":\" Vivamus dictum nulla a tellus rutrum facilisis. Nunc et enim eget elit placerat posuere vitae sed quam. Etiam luctus, diam commodo faucibus dictum, velit dui varius leo, sit amet facilisis eros erat a libero. Sed dictum sed mi convallis vestibulum. Cras ullamcorper massa ante. Maecenas tristique varius nunc at vestibulum. Nulla efficitur purus eu orci elementum consequat. Quisque maximus magna elit, in imperdiet tellus sodales quis. In semper, risus sed molestie tincidunt, ex elit vestibulum nisi, non mattis eros nulla eget sem. Proin eu magna et elit blandit faucibus. In hac habitasse platea dictumst. Suspendisse ultricies, felis in mollis pulvinar, leo mi finibus nisl, sit amet aliquam tortor urna eu metus.\",\n  \"category\":\"test\",\n  \"status\":\"Publish\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/article/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"article",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Article",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/article/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"article",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
