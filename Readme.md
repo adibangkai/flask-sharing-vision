@@ -19,9 +19,9 @@ $ venv\Scripts\activate
 5. server bisa dijalankan dengan perintah "flask run" pada console
 6. bila terjadi kesalahan bisa hubungi saya atau bisa mencoba versi yang sudah dideploy di url berikut
 
-link backend : "https://flask-sharing-vision-production.up.railway.app/"
+link backend : https://flask-sharing-vision-production.up.railway.app/
 
-link fronteend :"https://frontend-sharing-vision.vercel.app/home"
+link fronteend : https://frontend-sharing-vision.vercel.app/home
 
 terimakasih banyak.
 
