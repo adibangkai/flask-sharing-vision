@@ -16,7 +16,7 @@ CORS(app)
 # sebelum dirun, sesuaikan ini dengan port terlebih dahulu 
 app.config['MYSQL_DATABASE_USER']=os.getenv('USER')
 app.config['MYSQL_DATABASE_PASSWORD']=os.getenv('PSWD')
-app.config['MYSQL_DATABASE_PORT']=os.getenv('PORT')
+app.config['MYSQL_DATABASE_PORT']=int(os.getenv('PORT'))
 app.config['MYSQL_DATABASE_DB']=os.getenv('DBNAME')
 app.config['MYSQL_DATABASE_HOST']=os.getenv('HOST')
 
