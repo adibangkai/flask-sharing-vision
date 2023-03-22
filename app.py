@@ -46,7 +46,7 @@ def article_handler():
         # validasi input
         errors = articleSchema().validate(request.json)
         if errors:
-            return jsonify({"error":"ada yang salah pada inputan anda","message":errors}),422
+            return jsonify({"error":"sorry, there's an error..","message":errors}),422
         _title = request.json['title']
         _content = request.json['content']
         _category = request.json['category']
@@ -58,34 +58,44 @@ def article_handler():
         cursor.execute('INSERT INTO posts(title,content,category,status) VALUES (%s,%s,%s,%s)',(_title,_content,_category,_status))
 
         conn.commit()
-        return jsonify({'message': 'sucess'}), 201
+        return jsonify({'message': 'success'}), 201
     if request.method == 'GET':
         cursor = conn.cursor()
         cursor.execute('SELECT title,content,category,status,id from posts')
-        hasil = cursor.fetchall()
-        return jsonify({'data': hasil}), 201
+        res = cursor.fetchall()
+        return jsonify({'data': res}), 201
 
 @app.route('/article/<int:limit>/<int:offset>', methods=['GET'])
 def article_pagination(limit,offset):
     cursor = conn.cursor()
     cursor.execute('SELECT title,content,category,status,id  FROM posts LIMIT %s OFFSET %s',(limit,offset))
-    hasil = cursor.fetchall()
-    return jsonify({'data':hasil})
+    res = cursor.fetchall()
+    return jsonify({'data':res})
 
 # saya tambahkan satu route untuk list artikel yang di publish, untuk halaman list artikel/preview
-@app.route('/published/<int:limit>/<int:offset>', methods=['GET'])
-def publish_pagination(limit,offset):
+@app.route('/status/<string:status>/<int:limit>/<int:offset>', methods=['GET'])
+def publish_pagination(status,limit,offset):
     cursor = conn.cursor()
-    cursor.execute('SELECT title,content,category,status,id  FROM posts WHERE status="Publish" LIMIT %s OFFSET %s ',(limit,offset))
-    hasil = cursor.fetchall()
-    return jsonify({'data':hasil})
+    cursor.execute('SELECT title,content,category,status,id  FROM posts WHERE status=%s LIMIT %s OFFSET %s ',(status,limit,offset))
+    res = cursor.fetchall()
+    return jsonify({'data':res})
+
+@app.route('/status/<string:status>', methods=['GET'])
+def publish_all(status):
+    cursor = conn.cursor()
+    cursor.execute('SELECT title,content,category,status,id  FROM posts WHERE status=%s',status)
+    res = cursor.fetchall()
+    return jsonify({'data':res})
 
 @app.route('/article/<int:id>', methods=['GET'])
 def article_single_handler(id):
     cursor = conn.cursor()
     cursor.execute('SELECT title,content,category,status FROM posts WHERE id = %s',id)
-    hasil = cursor.fetchone()
-    return jsonify(hasil)
+    res = cursor.fetchone()
+    if res:
+        return jsonify(res)
+    else:
+        return jsonify({"message":"article not found"})
 
 @app.route('/article/<int:id>', methods=['POST','PUT','PATCH'])
 def article_edit_handler(id):
@@ -107,10 +117,12 @@ def article_delete_handler(id):
     cursor = conn.cursor()
     cursor.execute('DELETE FROM posts WHERE id = %s',(id))
     conn.commit()
-
     return jsonify({"message":"item deleted"})
      
-
+@app.errorhandler(404)
+def handle_404(e):
+    # handle all other routes here
+    return jsonify({'message':'oops not found'})
 
 if __name__ == '__main__':
     app.run(debug=True)
