@@ -36,6 +36,9 @@ class articleSchema(Schema):
     category = fields.Str(required=True, validate=validate.Length(min=3))
     status = fields.Str(required=True, validate=validate.OneOf(project_status))
 
+@app.route('/',methods=['GET'])
+def intro_handler():
+    return jsonify({"messages":"hallo! ini adalah url backend untuk test sharing vision - adi bangkit"})
 
 @app.route('/article/', methods=['POST','GET'])
 def article_handler():
@@ -64,7 +67,6 @@ def article_handler():
 
 @app.route('/article/<int:limit>/<int:offset>', methods=['GET'])
 def article_pagination(limit,offset):
-
     cursor = conn.cursor()
     cursor.execute('SELECT title,content,category,status,id  FROM posts LIMIT %s OFFSET %s',(limit,offset))
     hasil = cursor.fetchall()
@@ -73,7 +75,6 @@ def article_pagination(limit,offset):
 # saya tambahkan satu route untuk list artikel yang di publish, untuk halaman list artikel/preview
 @app.route('/published/<int:limit>/<int:offset>', methods=['GET'])
 def publish_pagination(limit,offset):
-
     cursor = conn.cursor()
     cursor.execute('SELECT title,content,category,status,id  FROM posts WHERE status="Publish" LIMIT %s OFFSET %s ',(limit,offset))
     hasil = cursor.fetchall()
