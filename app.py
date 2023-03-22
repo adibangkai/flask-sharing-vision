@@ -4,7 +4,7 @@ from pymysql.cursors import DictCursor
 from flask_marshmallow import Marshmallow
 from marshmallow import Schema, fields, validate, validates, validates_schema, ValidationError
 from flask_cors import CORS
-
+import os
 app = Flask(__name__)
 
 # marshmallow untuk validasi
@@ -14,10 +14,11 @@ ma = Marshmallow(app)
 CORS(app)
 
 # sebelum dirun, sesuaikan ini dengan port terlebih dahulu 
-app.config['MYSQL_DATABASE_USER']='root'
-app.config['MYSQL_DATABASE_PASSWORD']=''
-app.config['MYSQL_DATABASE_DB']='articledb'
-app.config['MYSQL_DATABASE_HOST']='localhost'
+app.config['MYSQL_DATABASE_USER']=os.getenv('USER')
+app.config['MYSQL_DATABASE_PASSWORD']=os.getenv('PSWD')
+app.config['MYSQL_DATABASE_PORT']=os.getenv('PORT')
+app.config['MYSQL_DATABASE_DB']=os.getenv('DBNAME')
+app.config['MYSQL_DATABASE_HOST']=os.getenv('HOST')
 
 # setting agar nama field otomatis include di response 
 mysql = MySQL(cursorclass=DictCursor)
