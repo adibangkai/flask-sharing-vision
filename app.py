@@ -15,7 +15,7 @@ CORS(app)
 
 # sebelum dirun, sesuaikan ini dengan port terlebih dahulu 
 app.config['MYSQL_DATABASE_USER']='root'
-app.config['MYSQL_DATABASE_PASSWORD']='Laruku2000'
+app.config['MYSQL_DATABASE_PASSWORD']=''
 app.config['MYSQL_DATABASE_DB']='articledb'
 app.config['MYSQL_DATABASE_HOST']='localhost'
 
