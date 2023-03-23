@@ -13,7 +13,7 @@ $ venv\Scripts\activate
 ```
 
 1. setelah masuk ke venv install library yang dibutuhkan dengan cara menjalankan perintah "pip install -r requirements.txt" pada console
-2. untuk migrasi database pertama buka file "create-db.py" kemudian sesuaikan variable host,user,dan password 
+2. untuk migrasi database pertama buka file "create_db.py" kemudian sesuaikan variable host,user,dan password 
 3. setelah melakukan setting, migrasi dapat dijalankan dengan perintah "python create_db.py"
 4. sebelum server dijalankan buka "app.py" dan setting variable untuk koneksi sql.
 5. server bisa dijalankan dengan perintah "flask run" pada console
