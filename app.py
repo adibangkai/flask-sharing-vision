@@ -14,11 +14,7 @@ CORS(app)
 
 # sebelum dirun, sesuaikan ini dengan port terlebih dahulu 
 def get_db_connection():
-    conn = psycopg2.connect(
-        host=os.getenv('HOST'),
-        database=os.getenv('DBNAME'),
-        user=os.getenv('USER'),
-        password=os.getenv('PWD'))
+    conn = psycopg2.connect(os.getenv('CONNECT'))
     return conn
 
 # setting agar nama field otomatis include di response 
@@ -63,7 +59,7 @@ def article_handler():
         res = cursor.fetchall()
         return jsonify({'data': res}), 201
 
-@app.route('/article/<int:limit>/<int:offset>', methods=['GET'])
+@app.route('/article/<limit>/<offset>', methods=['GET'])
 def article_pagination(limit,offset):
     conn = get_db_connection()
     cursor =conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
@@ -72,7 +68,7 @@ def article_pagination(limit,offset):
     return jsonify({'data':res})
 
 # saya tambahkan satu route untuk list artikel yang di publish, untuk halaman list artikel/preview
-@app.route('/status/<string:status>/<int:limit>/<int:offset>', methods=['GET'])
+@app.route('/status/<status>/<limit>/<offset>', methods=['GET'])
 def publish_pagination(status,limit,offset):
     conn = get_db_connection()
     cursor = conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
@@ -80,11 +76,11 @@ def publish_pagination(status,limit,offset):
     res = cursor.fetchall()
     return jsonify({'data':res})
 
-@app.route('/status/<string:status>', methods=['GET'])
+@app.route('/status/<status>', methods=['GET'])
 def publish_all(status):
     conn = get_db_connection()
     cursor = conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
-    cursor.execute('SELECT title,content,category,status,id  FROM posts WHERE status=%s',status)
+    cursor.execute('SELECT title,content,category,status,id FROM posts WHERE status=%s',(status,))
     res = cursor.fetchall()
     return jsonify({'data':res})
 
