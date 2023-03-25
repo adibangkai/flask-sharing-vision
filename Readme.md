@@ -20,7 +20,8 @@ $ venv\Scripts\activate
 6. bila terjadi kesalahan bisa hubungi saya atau bisa mencoba versi yang sudah dideploy di url berikut
 
 
-// maaf saya update link backend karena akun railway saya limit,  jadi saya deploy ulang di render, terimakasih
+notes: maaf saya update link backend karena akun railway saya limit,  jadi saya deploy ulang di render, terimakasih
+
 link backend: https://flask-sharing-vision.onrender.com
 
 link frontend: https://frontend-sharing-vision.vercel.app/home
