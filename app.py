@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify,json
-from flaskext.mysql import MySQL
-from pymysql.cursors import DictCursor
 from flask_marshmallow import Marshmallow
+import psycopg2.extras
 from marshmallow import Schema, fields, validate, validates, validates_schema, ValidationError
 from flask_cors import CORS
 import os
@@ -14,17 +13,16 @@ ma = Marshmallow(app)
 CORS(app)
 
 # sebelum dirun, sesuaikan ini dengan port terlebih dahulu 
-app.config['MYSQL_DATABASE_USER']=os.getenv('USER')
-app.config['MYSQL_DATABASE_PASSWORD']=os.getenv('PSWD')
-app.config['MYSQL_DATABASE_PORT']=int(os.getenv('PORT'))
-app.config['MYSQL_DATABASE_DB']=os.getenv('DBNAME')
-app.config['MYSQL_DATABASE_HOST']=os.getenv('HOST')
+def get_db_connection():
+    conn = psycopg2.connect(
+        host=os.getenv('HOST'),
+        database=os.getenv('DBNAME'),
+        user=os.getenv('USER'),
+        password=os.getenv('PWD'))
+    return conn
 
 # setting agar nama field otomatis include di response 
-mysql = MySQL(cursorclass=DictCursor)
 
-mysql.init_app(app)
-conn = mysql.connect()
 
 
 # schema untuk validasi 
@@ -42,6 +40,8 @@ def intro_handler():
 
 @app.route('/article/', methods=['POST','GET'])
 def article_handler():
+    conn = get_db_connection()
+    cursor = conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
     if request.method == "POST":
         # validasi input
         errors = articleSchema().validate(request.json)
@@ -52,7 +52,6 @@ def article_handler():
         _category = request.json['category']
         _status = request.json['status']
         
-        cursor = conn.cursor()
 
         # execute query
         cursor.execute('INSERT INTO posts(title,content,category,status) VALUES (%s,%s,%s,%s)',(_title,_content,_category,_status))
@@ -60,14 +59,14 @@ def article_handler():
         conn.commit()
         return jsonify({'message': 'success'}), 201
     if request.method == 'GET':
-        cursor = conn.cursor()
         cursor.execute('SELECT title,content,category,status,id from posts')
         res = cursor.fetchall()
         return jsonify({'data': res}), 201
 
 @app.route('/article/<int:limit>/<int:offset>', methods=['GET'])
 def article_pagination(limit,offset):
-    cursor = conn.cursor()
+    conn = get_db_connection()
+    cursor =conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
     cursor.execute('SELECT title,content,category,status,id  FROM posts LIMIT %s OFFSET %s',(limit,offset))
     res = cursor.fetchall()
     return jsonify({'data':res})
@@ -75,21 +74,24 @@ def article_pagination(limit,offset):
 # saya tambahkan satu route untuk list artikel yang di publish, untuk halaman list artikel/preview
 @app.route('/status/<string:status>/<int:limit>/<int:offset>', methods=['GET'])
 def publish_pagination(status,limit,offset):
-    cursor = conn.cursor()
+    conn = get_db_connection()
+    cursor = conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
     cursor.execute('SELECT title,content,category,status,id  FROM posts WHERE status=%s LIMIT %s OFFSET %s ',(status,limit,offset))
     res = cursor.fetchall()
     return jsonify({'data':res})
 
 @app.route('/status/<string:status>', methods=['GET'])
 def publish_all(status):
-    cursor = conn.cursor()
+    conn = get_db_connection()
+    cursor = conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
     cursor.execute('SELECT title,content,category,status,id  FROM posts WHERE status=%s',status)
     res = cursor.fetchall()
     return jsonify({'data':res})
 
-@app.route('/article/<int:id>', methods=['GET'])
+@app.route('/article/<id>', methods=['GET'])
 def article_single_handler(id):
-    cursor = conn.cursor()
+    conn = get_db_connection()
+    cursor = conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor)
     cursor.execute('SELECT title,content,category,status FROM posts WHERE id = %s',id)
     res = cursor.fetchone()
     if res:
@@ -99,6 +101,7 @@ def article_single_handler(id):
 
 @app.route('/article/<int:id>', methods=['POST','PUT','PATCH'])
 def article_edit_handler(id):
+    conn = get_db_connection()
     errors = articleSchema().validate(request.json)
     if errors:
         return errors, 422
@@ -112,10 +115,11 @@ def article_edit_handler(id):
 
     return jsonify({"message":"success"})
      
-@app.route('/article/<int:id>', methods=['DELETE'])
+@app.route('/article/<id>', methods=['DELETE'])
 def article_delete_handler(id):
+    conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM posts WHERE id = %s',(id))
+    cursor.execute('DELETE FROM posts WHERE id = %s',[id])
     conn.commit()
     return jsonify({"message":"item deleted"})
      
