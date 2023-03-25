@@ -15,13 +15,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://flask-sharing-vision-production.up.railway.app/article/",
+							"raw": "https://flask-sharing-vision.onrender.com/article/",
 							"protocol": "https",
 							"host": [
-								"flask-sharing-vision-production",
-								"up",
-								"railway",
-								"app"
+								"flask-sharing-vision",
+								"onrender",
+								"com"
 							],
 							"path": [
 								"article",
@@ -38,13 +37,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://flask-sharing-vision-production.up.railway.app/article/5",
+							"raw": "https://flask-sharing-vision.onrender.com/article/5",
 							"protocol": "https",
 							"host": [
-								"flask-sharing-vision-production",
-								"up",
-								"railway",
-								"app"
+								"flask-sharing-vision",
+								"onrender",
+								"com"
 							],
 							"path": [
 								"article",
@@ -61,13 +59,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://flask-sharing-vision-production.up.railway.app/article/4/0",
+							"raw": "https://flask-sharing-vision.onrender.com/article/4/0",
 							"protocol": "https",
 							"host": [
-								"flask-sharing-vision-production",
-								"up",
-								"railway",
-								"app"
+								"flask-sharing-vision",
+								"onrender",
+								"com"
 							],
 							"path": [
 								"article",
@@ -100,13 +97,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://flask-sharing-vision-production.up.railway.app/article/",
+							"raw": "https://flask-sharing-vision.onrender.com/article/",
 							"protocol": "https",
 							"host": [
-								"flask-sharing-vision-production",
-								"up",
-								"railway",
-								"app"
+								"flask-sharing-vision",
+								"onrender",
+								"com"
 							],
 							"path": [
 								"article",
@@ -138,13 +134,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://flask-sharing-vision-production.up.railway.app/article/",
+							"raw": "https://flask-sharing-vision.onrender.com/article/",
 							"protocol": "https",
 							"host": [
-								"flask-sharing-vision-production",
-								"up",
-								"railway",
-								"app"
+								"flask-sharing-vision",
+								"onrender",
+								"com"
 							],
 							"path": [
 								"article",
@@ -176,13 +171,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://flask-sharing-vision-production.up.railway.app/article/1",
+							"raw": "https://flask-sharing-vision.onrender.com/article/1",
 							"protocol": "https",
 							"host": [
-								"flask-sharing-vision-production",
-								"up",
-								"railway",
-								"app"
+								"flask-sharing-vision",
+								"onrender",
+								"com"
 							],
 							"path": [
 								"article",
@@ -214,13 +208,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://flask-sharing-vision-production.up.railway.app/article/4",
+							"raw": "https://flask-sharing-vision.onrender.com/article/4",
 							"protocol": "https",
 							"host": [
-								"flask-sharing-vision-production",
-								"up",
-								"railway",
-								"app"
+								"flask-sharing-vision",
+								"onrender",
+								"com"
 							],
 							"path": [
 								"article",
